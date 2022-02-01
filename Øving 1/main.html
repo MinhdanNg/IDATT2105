@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hovedside</title>
+</head>
+<body>
+<div id="container">
+    <div id="header">
+        <img src="pics/Lays-Logo.png" alt="Lays logo" id="logo">
+        Velkommen
+    </div>
+
+    <ul id="menu">
+        <li class="menuItem"><a href="#">Side 1</a></li>
+        <li class="menuItem"><a href="#">Side 2</a></li>
+        <li class="menuItem"><a href="#">Side 3</a></li>
+        <li class="menuItem"><a href="#">Side 4</a></li>
+        <li class="menuItem"><a href="#">Side 5</a></li>
+        <li class="menuItem"><a href="#">Side 6</a></li>
+        <li class="menuItem"><a href="#">Side 7</a></li>
+        <li class="menuItem"><a href="#">Side 8</a></li>
+    </ul>
+    <div id="text">
+        <p id="firstPara">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum consequat eleifend.
+            Etiam non lectus sollicitudin enim tincidunt dapibus rhoncus vel orci.
+            raesent rutrum et diam vel varius. Fusce vitae mauris vitae sem dignissim maximus.
+            Sed viverra ut nibh eu congue. Suspendisse viverra enim sit amet dui dapibus varius.
+            Ut ac turpis leo. Integer nec dolor neque. Nunc vel vulputate est, eget laoreet quam. Quisque ornare quam vel tellus auctor molestie.
+            Interdum et malesuada fames ac ante ipsum primis in faucibus. Aenean velit lorem, scelerisque id viverra in, convallis ac odio. Suspendisse potenti.
+        </p>
+        <p id="secondPara">
+            Ut nec varius erat. Curabitur finibus est eget sem fringilla mollis. Phasellus fringilla dignissim quam, vitae condimentum velit sagittis quis.
+            Proin dictum odio malesuada turpis auctor, volutpat laoreet libero bibendum. Maecenas dictum vel justo et hendrerit.
+            Morbi suscipit volutpat velit, non fringilla purus interdum in. Vivamus rutrum erat a ante luctus facilisis.
+            Cras consequat feugiat sapien at sagittis. Aliquam eget sem elementum, aliquet sem sed, suscipit mi. Sed malesuada rhoncus nunc eget malesuada. Phasellus dapibus non mi ac commodo.
+        </p>
+    </div>
+    <div id="picture">
+        <img src="pics/popcat.jpeg" alt="popcat" id="popcat">
+    </div>
+    <div id="footer">
+        <button onclick="increaseNumber()">Øk tall</button>
+        <p id="increaseNumber" class="float"></p>
+        <button onclick="showHide()">hemmelighet</button>
+        <p id="secret" style="display: none" class="float">i am a secret!</p>
+        <button onclick="showArray()">liste</button>
+        <div id="list"></div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

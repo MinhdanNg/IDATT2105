@@ -1,0 +1,100 @@
+@media only screen and (max-width: 480px) {
+    #container {
+        background-color: lightblue;
+        display: grid;
+        grid-gap: 10px;
+        padding: 10px;
+        grid-template-areas:
+                'header'
+                'menu'
+                'text'
+                'picture'
+                'footer';
+    }
+}
+
+@media (min-width: 481px) {
+    #container {
+        background-color: lightblue;
+        display: grid;
+        grid-gap: 10px;
+        padding: 10px;
+        grid-template-areas:
+'header header header header'
+'menu text text picture'
+'footer footer footer footer';
+    }
+}
+
+#header {
+    padding: 15px;
+    background-color: red;
+    grid-area: header;
+    border: dotted white 2px;
+    text-align: center;
+    font-size: 45px;
+    font-family: "papyrus", fantasy;
+}
+
+#menu{
+    background-color: blue;
+    grid-area: menu;
+    border: dashed black 5px;
+    list-style-type: none;
+    padding: 0;
+}
+
+#text {
+    background-color: green;
+    grid-area: text;
+    padding: 10px;
+}
+
+#picture {
+    background-color: yellow;
+    grid-area: picture;
+}
+
+#footer {
+    background-color: deeppink;
+    grid-area: footer;
+    height: 50px;
+    border: dotted white 2px;
+}
+
+.menuItem {
+    background-color: white;
+    border: solid black 3px;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 10px;
+}
+
+#firstPara {
+    font-family: "Comic Sans MS", sans-serif;
+    font-size: 20px;
+}
+
+#secondPara {
+    font-family: "courier new", monospace;
+    font-size: 20px;
+}
+
+#logo {
+    height: 50px;
+}
+#popcat {
+    width: 100%;
+}
+
+button{
+    margin: 10px;
+    float:left;
+    width:100px;
+    background-color: yellow;
+    padding: 5px;
+}
+
+.float {
+    float: left;
+}
