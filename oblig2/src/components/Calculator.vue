@@ -18,6 +18,12 @@
       </div>
     </div>
     </form>
+    <div class="history">
+      <h3>Logg:</h3>
+      <ul>
+        <li v-for="(calculation, index) in history" :key="index">{{ calculation }}</li>
+      </ul>
+    </div>
   </div>
 
 </template>
@@ -35,6 +41,7 @@ export default {
       answer: "",
       commaCheck: "",
       showAnswer: false,
+      history: [],
     }
   },
   methods: {
@@ -102,6 +109,7 @@ export default {
             inputNumber: this.inputNumber,
             answer: this.answer,
           }
+          this.history.push(this.inputNumber + " = " + this.answer);
           this.inputNumber = this.answer;
           this.showAnswer = true;
 
@@ -152,6 +160,15 @@ button, .submitButton{
   color: white;
   border-radius: 5px;
   font-size: 20px;
+}
+.history {
+  border: solid black 2px;
+  text-align: left;
+  width: 650px;
+  height: 250px;
+  margin: 10px auto;
+  padding: 10px;
+  overflow: scroll;
 }
 li {
   margin: 15px 0;
