@@ -3,27 +3,21 @@
     <h1> Kalkulator </h1>
     <form class="inputForm" @submit.prevent="calculate">
     <div class="inputBox">
-      <input autocomplete="off" id="input" v-model="inputNumber">
+      <input autocomplete="off" id="input" v-model="inputNumber" @keypress="validation($event)" @keyup.enter="calculate">
     </div>
     <div class="container">
       <div class="numberButtons">
-      <button @click="reset">C</button>
-      <button @click="getAnswer">ANS</button>
-      <button @click="undo">DEL</button>
-      <button v-for="(number) in numbers" :key="number" @click="showNumber(number)">{{ number }}</button>
+      <button @click="reset" type="button">C</button>
+      <button @click="getAnswer" type="button">ANS</button>
+      <button @click="undo" type="button">DEL</button>
+      <button v-for="(number) in numbers" :key="number" @click="showNumber(number)" type="button">{{ number }}</button>
       </div>
       <div class="signButtons">
-        <button v-for="(sign, index) in signs" :key="index" @click="addSign(sign)">{{ sign }}</button>
+        <button v-for="(sign, index) in signs" :key="index" @click="addSign(sign)" type="button">{{ sign }}</button>
         <input type="submit" class="submitButton" style="background-color: darkorange" value="=">
       </div>
     </div>
     </form>
-    <div class="history">
-      <h3>Logg:</h3>
-      <ul>
-        <li v-for="(calculation, index) in history" :key="index">{{ calculation }}</li>
-      </ul>
-    </div>
   </div>
 
 </template>
@@ -40,11 +34,21 @@ export default {
       inputNumber: "",
       answer: "",
       commaCheck: "",
-      history: [],
       showAnswer: false,
     }
   },
   methods: {
+    validation($event){
+      this.checkForReset();
+      if($event.charCode > 47 && $event.charCode < 58){
+        return true;
+      } else if($event.charCode > 42 && $event.charCode < 48){
+        this.addSign($event.key);
+        $event.preventDefault();
+      } else {
+        $event.preventDefault();
+      }
+    },
     reset(){
       this.inputNumber = "";
       this.showAnswer = false;
@@ -91,14 +95,18 @@ export default {
 
     calculate(){
       if(this.inputNumber.length > 0){
-        let result = eval(this.inputNumber);
         if(this.signs.some(sign => this.inputNumber.includes(sign)) && !this.showAnswer){
-          this.history.push(this.inputNumber + " = " + result);
+          this.answer = eval(this.inputNumber);
+
+          let result = {
+            inputNumber: this.inputNumber,
+            answer: this.answer,
+          }
+          this.inputNumber = this.answer;
+          this.showAnswer = true;
+
+          this.$emit('calculated', result);
         }
-        this.answer = result;
-        this.reset()
-        this.inputNumber += (result);
-        this.showAnswer = true;
       }
     }
   }
@@ -144,15 +152,6 @@ button, .submitButton{
   color: white;
   border-radius: 5px;
   font-size: 20px;
-}
-.history {
-  border: solid black 2px;
-  text-align: left;
-  width: 650px;
-  height: 250px;
-  margin: 10px auto;
-  padding: 10px;
-  overflow: scroll;
 }
 li {
   margin: 15px 0;
