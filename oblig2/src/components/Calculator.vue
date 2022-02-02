@@ -1,8 +1,9 @@
 <template>
   <div class="calculator">
     <h1> Kalkulator </h1>
+    <form class="inputForm" @submit.prevent="calculate">
     <div class="inputBox">
-      <text id="input" v-for="(number, index) in inputNumber" :key="index" >{{ number }}</text>
+      <input autocomplete="off" id="input" v-model="inputNumber">
     </div>
     <div class="container">
       <div class="numberButtons">
@@ -13,9 +14,10 @@
       </div>
       <div class="signButtons">
         <button v-for="(sign, index) in signs" :key="index" @click="addSign(sign)">{{ sign }}</button>
-        <button @click="calculate" style="background-color: darkorange">=</button>
+        <input type="submit" class="submitButton" style="background-color: darkorange" value="=">
       </div>
     </div>
+    </form>
     <div class="history">
       <h3>Logg:</h3>
       <ul>
@@ -35,8 +37,8 @@ export default {
     return {
       numbers: [...Array(10).keys()," ", 0, ","].slice(1),
       signs: ["+", "-", "*", "/"],
-      inputNumber: [ ],
-      answer: null,
+      inputNumber: "",
+      answer: "",
       commaCheck: "",
       history: [],
       showAnswer: false,
@@ -44,7 +46,7 @@ export default {
   },
   methods: {
     reset(){
-      this.inputNumber.length = 0;
+      this.inputNumber = "";
       this.showAnswer = false;
       this.commaCheck = "";
     },
@@ -55,25 +57,25 @@ export default {
     },
     getAnswer(){
       this.checkForReset();
-      if(this.inputNumber.length === 0 || this.signs.some(sign => this.inputNumber[this.inputNumber.length-1] === (sign))){
-        this.inputNumber.push(this.answer);
+      if(this.inputNumber.length === 0 || this.signs.some(sign => this.inputNumber.charAt(this.inputNumber.length - 1) === (sign))){
+        this.inputNumber += (this.answer);
       } else {
-        this.inputNumber.push("*" + this.answer);
+        this.inputNumber+=("*" + this.answer);
       }
     },
     undo(){
       this.checkForReset();
       this.commaCheck = this.commaCheck.substring(0, this.commaCheck.length - 1);
-      this.inputNumber.pop();
+      this.inputNumber = this.inputNumber.substring(0, this.inputNumber.length - 1);
     },
     showNumber(number){
       this.checkForReset();
       if(!((number === "." || number === ",") && this.commaCheck.includes(number))){
         this.commaCheck += number;
         if(number === "." || number === ","){
-          this.inputNumber.push(".")
+          this.inputNumber += (".")
         } else {
-          this.inputNumber.push(number);
+          this.inputNumber += (number);
         }
       }
     },
@@ -82,25 +84,20 @@ export default {
         this.showAnswer = false;
       }
       if(this.inputNumber.length>0 && !isNaN(this.inputNumber[this.inputNumber.length - 1])){
-        this.inputNumber.push(sign);
+        this.inputNumber += sign;
         this.commaCheck = "";
       }
     },
 
     calculate(){
       if(this.inputNumber.length > 0){
-        let calculation = "";
-        for(let i = 0; i < this.inputNumber.length; i++) {
-          calculation += this.inputNumber[i];
-        }
-
-        let result = eval(calculation);
-        if(this.signs.some(sign => calculation.includes(sign)) && !this.showAnswer){
-          this.history.push(calculation + " = " + result);
+        let result = eval(this.inputNumber);
+        if(this.signs.some(sign => this.inputNumber.includes(sign)) && !this.showAnswer){
+          this.history.push(this.inputNumber + " = " + result);
         }
         this.answer = result;
         this.reset()
-        this.inputNumber.push(result);
+        this.inputNumber += (result);
         this.showAnswer = true;
       }
     }
@@ -127,17 +124,19 @@ export default {
 .signButtons{
   flex-direction: column;
 }
-.inputBox {
+#input {
+  text-align: center;
   width: 700px;
   height: 45px;
   margin: auto;
   background-color: dimgrey;
-  color: white;
+  color: transparent;
+  text-shadow: 0 0 0 white;
   border-radius: 5px;
   font-size: 20px;
   line-height:45px;
 }
-button{
+button, .submitButton{
   width: 140px;
   height: 45px;
   margin-top: 10px;
