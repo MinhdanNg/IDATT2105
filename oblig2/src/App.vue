@@ -1,15 +1,16 @@
 <template>
-  <Calculator/>
+  <div id="app">
+    <div id="nav">
+      <router-link :to="{ name:'Calculator'}">Calculator</router-link> |
+      <router-link :to="{ name:'Form'}">Contact Form</router-link>
+    </div>
+    <router-view />
+  </div>
 </template>
 
 <script>
-import Calculator from './components/Calculator.vue'
-
 export default {
   name: 'App',
-  components: {
-    Calculator
-  }
 }
 </script>
 
@@ -21,5 +22,29 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+#nav {
+  padding: 30px;
+}
+#nav a {
+  font-weight: bold;
+  color: #2c3e50;
+}
+#nav a.router-link-exact-active {
+  color: #42b983;
+}
+.field {
+  margin: 10px;
+  padding: 10px;
+}
+button {
+  margin: auto;
+  padding: 10px 15px;
+  width: 100px;
+  background-color: lightblue;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-size: 17px;
+  border-radius: 15px;
+  border: grey solid 1px;
 }
 </style>
