@@ -1,4 +1,4 @@
-package edu.ntnu.minhdn.calculator.model;
+package edu.ntnu.minhdn.O5.calculator.model;
 
 public class Expression {
     private String expression;

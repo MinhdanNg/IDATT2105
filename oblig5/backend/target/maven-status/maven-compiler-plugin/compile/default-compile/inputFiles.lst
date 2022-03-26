@@ -1,0 +1,6 @@
+/Users/md/Desktop/Fullstack/oblig5/backend/src/main/java/edu/ntnu/minhdn/calculator/model/Expression.java
+/Users/md/Desktop/Fullstack/oblig5/backend/src/main/java/edu/ntnu/minhdn/calculator/DemoApplication.java
+/Users/md/Desktop/Fullstack/oblig5/backend/src/main/java/edu/ntnu/minhdn/calculator/repository/CalculatorRepository.java
+/Users/md/Desktop/Fullstack/oblig5/backend/src/main/java/edu/ntnu/minhdn/calculator/controller/RestController.java
+/Users/md/Desktop/Fullstack/oblig5/backend/src/main/java/edu/ntnu/minhdn/calculator/repository/JdbcCalculatorRepository.java
+/Users/md/Desktop/Fullstack/oblig5/backend/src/main/java/edu/ntnu/minhdn/calculator/service/Calculation.java
